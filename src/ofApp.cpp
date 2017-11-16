@@ -20,8 +20,6 @@ void ofApp::setup() {
 		player.setMultiPlay(true);
 		m_vecSoundPlayer.push_back(player);
 	}
-
-	font.load("../../data/fonts/Sudbury_Basin_3D.ttf", 32);
 }
 
 //--------------------------------------------------------------
@@ -38,7 +36,7 @@ void ofApp::update() {
 void ofApp::draw() {
 
 	float widthDiv = ofGetWidth() / m_samples.size();
-	string tmpStr;
+	std::string tmpStr;
 	for (auto i = 0; i < m_samples.size(); ++i) {
 		// draw the background colors:
 		if (((i + 1) % 2) == 0) {
@@ -54,7 +52,7 @@ void ofApp::draw() {
 		const auto sample = m_vecSoundPlayer.at(i);
 		if (sample.isPlaying()) ofSetHexColor(0xFF0000);
 		else ofSetHexColor(0x000000);
-		font.drawString("Sample !!", (widthDiv * i) + 50, 50);
+		ofDrawBitmapString("Sample", (widthDiv * i) + 50, 50);
 
 		ofSetHexColor(0x000000);
 		tmpStr = "click to play (Left Arrow)\npan: " + ofToString(sample.getPan());

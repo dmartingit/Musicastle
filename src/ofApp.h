@@ -23,7 +23,5 @@ public:
 
 	std::vector<std::string> m_samples;
 	std::vector<ofSoundPlayer> m_vecSoundPlayer;
-
-	ofTrueTypeFont	font;
 };
 
