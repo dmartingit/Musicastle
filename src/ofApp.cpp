@@ -20,6 +20,16 @@ void ofApp::setup() {
 		player.setMultiPlay(true);
 		m_vecSoundPlayer.push_back(player);
 	}
+
+	m_btnLoadSample.addListener(this, &ofApp::loadSampleBtnPressed);
+
+	m_gui.setup();
+	m_gui.add(m_btnLoadSample.setup("Load Sample"));
+}
+
+//--------------------------------------------------------------
+void ofApp::exit() {
+	m_btnLoadSample.removeListener(this, &ofApp::loadSampleBtnPressed);
 }
 
 //--------------------------------------------------------------
@@ -34,7 +44,6 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-
 	float widthDiv = ofGetWidth() / m_samples.size();
 	std::string tmpStr;
 	for (auto i = 0; i < m_samples.size(); ++i) {
@@ -58,6 +67,8 @@ void ofApp::draw() {
 		tmpStr = "click to play (Left Arrow)\npan: " + ofToString(sample.getPan());
 		ofDrawBitmapString(tmpStr, (widthDiv * i) + 20, ofGetHeight() - 50);
 	}
+
+	m_gui.draw();
 }
 
 //--------------------------------------------------------------
@@ -135,4 +146,12 @@ void ofApp::gotMessage(ofMessage msg) {
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo) {
 
+}
+
+//--------------------------------------------------------------
+void ofApp::loadSampleBtnPressed() {
+	ofFileDialogResult result = ofSystemLoadDialog("Load Sample");
+	if (result.bSuccess) {
+		m_vecSoundPlayer.at(0).load(result.getPath());
+	}
 }
