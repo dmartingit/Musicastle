@@ -68,6 +68,7 @@ void ofApp::draw() {
 		ofDrawBitmapString(tmpStr, (widthDiv * i) + 20, ofGetHeight() - 50);
 	}
 
+	// draw gui last so it is topmost
 	m_gui.draw();
 }
 
@@ -92,21 +93,6 @@ void ofApp::keyPressed(int key) {
 }
 
 //--------------------------------------------------------------
-void ofApp::keyReleased(int key) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button) {
-
-}
-
-//--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
 	float widthStep = ofGetWidth() / m_samples.size();
 	for (auto i = 0; i < m_samples.size(); ++i) {
@@ -116,36 +102,6 @@ void ofApp::mousePressed(int x, int y, int button) {
 			sample.setPan(ofMap(x, (widthStep * i), (widthStep * (i + 1)), -1, 1, true));
 		}
 	}
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo) {
-
 }
 
 //--------------------------------------------------------------
