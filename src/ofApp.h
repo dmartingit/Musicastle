@@ -14,13 +14,14 @@ public:
 	void keyPressed(int key);
 	void mousePressed(int x, int y, int button);
 
-	void loadSampleBtnPressed();
+	void addSampleBtnPressed();
+	void removeSampleBtnPressed();
 
-	std::vector<std::string> m_samples;
 	std::vector<ofSoundPlayer> m_vecSoundPlayer;
 
 	ofxPanel m_gui;
 	ofParameter<int> m_sampleId;
-	ofxButton m_btnLoadSample;
+	ofxButton m_btnAddSample;
+	ofxButton m_btnRemoveSample;
 };
 

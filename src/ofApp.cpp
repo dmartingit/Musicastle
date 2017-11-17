@@ -2,11 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-
-	// on OSX: if you want to use ofSoundPlayer together with ofSoundStream you need to synchronize buffersizes.
-	// use ofFmodSetBuffersize(bufferSize) to set the buffersize in fmodx prior to loading a file.
-
-	m_samples = {
+	std::vector<std::string> m_samples = {
 		"../../data/samples/piano/c.wav",
 		"../../data/samples/piano/d.wav",
 		"../../data/samples/piano/e.wav",
@@ -21,33 +17,41 @@ void ofApp::setup() {
 		m_vecSoundPlayer.push_back(player);
 	}
 
-	m_btnLoadSample.addListener(this, &ofApp::loadSampleBtnPressed);
+	m_btnAddSample.addListener(this, &ofApp::addSampleBtnPressed);
+	m_btnRemoveSample.addListener(this, &ofApp::removeSampleBtnPressed);
 
-	m_gui.setup();
-	m_gui.add(m_sampleId.set("Selected Sample", 0, 0, m_samples.size() - 1));
-	m_gui.add(m_btnLoadSample.setup("Load Sample"));
+	m_gui.setup("Musicastle");
+	m_gui.add(m_sampleId.set("Selected Sample", 0, 0, m_vecSoundPlayer.size() - 1));
+	m_gui.add(m_btnAddSample.setup("Add Sample"));
+	m_gui.add(m_btnRemoveSample.setup("Remove Sample"));
 }
 
 //--------------------------------------------------------------
 void ofApp::exit() {
-	m_btnLoadSample.removeListener(this, &ofApp::loadSampleBtnPressed);
+	m_btnAddSample.removeListener(this, &ofApp::addSampleBtnPressed);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-
 	ofBackground(255, 255, 255);
 
 	// update the sound playing system:
 	ofSoundUpdate();
 
+	// update the sample id range
+	m_sampleId.setMax(m_vecSoundPlayer.size() - 1);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-	float widthDiv = ofGetWidth() / m_samples.size();
+	if (m_vecSoundPlayer.empty()) {
+		m_gui.draw();
+		return;
+	}
+
+	float widthDiv = ofGetWidth() / m_vecSoundPlayer.size();
 	std::string tmpStr;
-	for (auto i = 0; i < m_samples.size(); ++i) {
+	for (auto i = 0; i < m_vecSoundPlayer.size(); ++i) {
 		// draw the background colors:
 		if (((i + 1) % 2) == 0) {
 			ofSetHexColor(0xeeeeee);
@@ -75,28 +79,39 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-
 	switch (key)
 	{
 	case OF_KEY_UP:
-		m_vecSoundPlayer.at(0).play();
+		if (m_vecSoundPlayer.size() > 0) {
+			m_vecSoundPlayer.at(0).play();
+		}
 		break;
 	case OF_KEY_LEFT:
-		m_vecSoundPlayer.at(1).play();
+		if (m_vecSoundPlayer.size() > 1) {
+			m_vecSoundPlayer.at(1).play();
+		}
 		break;
 	case OF_KEY_DOWN:
-		m_vecSoundPlayer.at(2).play();
+		if (m_vecSoundPlayer.size() > 2) {
+			m_vecSoundPlayer.at(2).play();
+		}
 		break;
 	case OF_KEY_RIGHT:
-		m_vecSoundPlayer.at(3).play();
+		if (m_vecSoundPlayer.size() > 3) {
+			m_vecSoundPlayer.at(3).play();
+		}
 		break;
 	}
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
-	float widthStep = ofGetWidth() / m_samples.size();
-	for (auto i = 0; i < m_samples.size(); ++i) {
+	if (m_vecSoundPlayer.empty()) {
+		return;
+	}
+
+	float widthStep = ofGetWidth() / m_vecSoundPlayer.size();
+	for (auto i = 0; i < m_vecSoundPlayer.size(); ++i) {
 		if (x >= (widthStep * i) && x < (widthStep * (i + 1))) {
 			auto sample = m_vecSoundPlayer.at(i);
 			sample.play();
@@ -106,9 +121,21 @@ void ofApp::mousePressed(int x, int y, int button) {
 }
 
 //--------------------------------------------------------------
-void ofApp::loadSampleBtnPressed() {
+void ofApp::addSampleBtnPressed() {
 	ofFileDialogResult result = ofSystemLoadDialog("Load Sample");
 	if (result.bSuccess) {
-		m_vecSoundPlayer.at(m_sampleId.get()).load(result.getPath());
+		ofSoundPlayer player;
+		player.load(result.getPath());
+		player.setVolume(0.75f);
+		player.setMultiPlay(true);
+		m_vecSoundPlayer.push_back(player);
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::removeSampleBtnPressed() {
+	if (!m_vecSoundPlayer.empty()) {
+		m_vecSoundPlayer.erase(m_vecSoundPlayer.begin() + m_sampleId.get());
+		m_sampleId.set(0);
 	}
 }
