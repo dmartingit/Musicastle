@@ -20,6 +20,7 @@ public:
 	std::vector<ofSoundPlayer> m_vecSoundPlayer;
 
 	ofxPanel m_gui;
+	ofParameter<int> m_sampleId;
 	ofxButton m_btnLoadSample;
 };
 

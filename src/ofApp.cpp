@@ -24,6 +24,7 @@ void ofApp::setup() {
 	m_btnLoadSample.addListener(this, &ofApp::loadSampleBtnPressed);
 
 	m_gui.setup();
+	m_gui.add(m_sampleId.set("Selected Sample", 0, 0, m_samples.size() - 1));
 	m_gui.add(m_btnLoadSample.setup("Load Sample"));
 }
 
@@ -108,6 +109,6 @@ void ofApp::mousePressed(int x, int y, int button) {
 void ofApp::loadSampleBtnPressed() {
 	ofFileDialogResult result = ofSystemLoadDialog("Load Sample");
 	if (result.bSuccess) {
-		m_vecSoundPlayer.at(0).load(result.getPath());
+		m_vecSoundPlayer.at(m_sampleId.get()).load(result.getPath());
 	}
 }
