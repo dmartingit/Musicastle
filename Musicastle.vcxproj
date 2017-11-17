@@ -172,8 +172,9 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\LoopManager\LoopManager.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Metronom\Metronom.cpp" />
+    <ClCompile Include="src\Metronome\Metronome.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxLabel.cpp" />
@@ -185,7 +186,8 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Metronom\Metronom.h" />
+    <ClInclude Include="src\LoopManager\LoopManager.h" />
+    <ClInclude Include="src\Metronome\Metronome.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxGui.h" />

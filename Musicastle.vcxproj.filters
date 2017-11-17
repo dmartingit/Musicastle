@@ -31,8 +31,11 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Metronom\Metronom.cpp">
-      <Filter>src\Metronom</Filter>
+    <ClCompile Include="src\LoopManager\LoopManager.cpp">
+      <Filter>src\LoopManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Metronome\Metronome.cpp">
+      <Filter>src\Metronome</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -48,8 +51,11 @@
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{02634dde-861c-4a35-a29e-e4ed1c0ad01e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Metronom">
-      <UniqueIdentifier>{14707c63-8dd1-49cb-bc66-3de9ec5e905f}</UniqueIdentifier>
+    <Filter Include="src\LoopManager">
+      <UniqueIdentifier>{7a06e742-e54d-4c45-8f47-d57cb9fdb865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Metronome">
+      <UniqueIdentifier>{cba05a51-9783-49f0-a7f0-4a904ef80094}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -83,8 +89,11 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Metronom\Metronom.h">
-      <Filter>src\Metronom</Filter>
+    <ClInclude Include="src\LoopManager\LoopManager.h">
+      <Filter>src\LoopManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Metronome\Metronome.h">
+      <Filter>src\Metronome</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

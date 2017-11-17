@@ -1,13 +1,12 @@
-#include "Metronom.h"
+#include "Metronome.h"
 
 //--------------------------------------------------------------
-CMetronom::CMetronom() : m_bpm(120), m_enabled(false) {
+CMetronome::CMetronome() : m_bpm(120), m_enabled(false), m_timerCalled(std::make_shared<bool>(false)) {
 	// setup sound players
 	m_upbeatPlayer.load("../../data/samples/metronom/metronome_upbeat.wav");
 	m_downbeatPlayer.load("../../data/samples/metronom/metronome_downbeat.wav");
 	m_upbeatPlayer.setVolume(0.75f);
 	m_downbeatPlayer.setVolume(0.75f);
-
 
 	// setup metronom timer
 	m_timer.setPeriodicEvent(500000000); // this is 0.5 second in nanoseconds --> 120 BPM
@@ -15,36 +14,47 @@ CMetronom::CMetronom() : m_bpm(120), m_enabled(false) {
 }
 
 //--------------------------------------------------------------
-void CMetronom::setEnabled(bool enabled)
+void CMetronome::setEnabled(bool enabled)
 {
 	m_enabled = enabled;
 }
 
 //--------------------------------------------------------------
-void CMetronom::setBpm(int value)
+void CMetronome::setBpm(int value)
 {
 	m_bpm = value;
 	m_timer.setPeriodicEvent(this->getBpmToNano(value));
 }
 
 //--------------------------------------------------------------
-int CMetronom::getBpm()
+int CMetronome::getBpm()
 {
 	return m_bpm;
 }
 
 //--------------------------------------------------------------
-bool CMetronom::getEnabled()
+bool CMetronome::getEnabled()
 {
 	return m_enabled;
 }
 
+std::shared_ptr<bool> CMetronome::getTimerCalled()
+{
+	return m_timerCalled;
+}
+
 //--------------------------------------------------------------
-void CMetronom::threadedFunction() {
+void CMetronome::threadedFunction() {
 	static int metronomSoundSwitch = -1;
 
 	while (isThreadRunning()) {
+		if (m_timerCalled) {
+			*m_timerCalled = false;
+		}
 		m_timer.waitNext();
+		if (m_timerCalled) {
+			*m_timerCalled = true;
+		}
 
 		// will run each beat
 		if (!m_enabled) {
@@ -67,13 +77,13 @@ void CMetronom::threadedFunction() {
 }
 
 //--------------------------------------------------------------
-void CMetronom::setTimer(uint64_t value)
+void CMetronome::setTimer(uint64_t value)
 {
 	m_timer.setPeriodicEvent(value);
 }
 
 //--------------------------------------------------------------
-uint64_t CMetronom::getBpmToNano(int value)
+uint64_t CMetronome::getBpmToNano(int value)
 {
 	return uint64_t(60000000000 / value);
 }

@@ -1,15 +1,16 @@
 #pragma once
 #include "ofMain.h"
 
-class CMetronom : public ofThread {
+class CMetronome : public ofThread {
 public:
-	CMetronom();
+	CMetronome();
 
 	void setEnabled(bool enabled);
 	void setBpm(int value);
 
 	int getBpm();
 	bool getEnabled();
+	std::shared_ptr<bool> getTimerCalled();
 
 private:
 	void threadedFunction();
@@ -19,6 +20,7 @@ private:
 private:
 	int m_bpm;
 	bool m_enabled;
+	std::shared_ptr<bool> m_timerCalled;
 	ofTimer m_timer;
 	ofSoundPlayer m_upbeatPlayer, m_downbeatPlayer;
 };
