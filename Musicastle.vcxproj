@@ -173,7 +173,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Metronom.cpp" />
+    <ClCompile Include="src\Metronom\Metronom.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxLabel.cpp" />
@@ -185,7 +185,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Metronom.h" />
+    <ClInclude Include="src\Metronom\Metronom.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxGui.h" />

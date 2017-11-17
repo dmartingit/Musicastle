@@ -2,7 +2,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 
-#include "Metronom.h"
+#include "Metronom/Metronom.h"
 
 class ofApp : public ofBaseApp {
 public:
