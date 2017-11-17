@@ -35,6 +35,8 @@ void ofApp::setup() {
 //--------------------------------------------------------------
 void ofApp::exit() {
 	m_btnAddSample.removeListener(this, &ofApp::addSampleBtnPressed);
+	m_loopManager.stopThread();
+	m_metronome.stopThread();
 }
 
 //--------------------------------------------------------------
