@@ -45,12 +45,15 @@ void CMetronom::threadedFunction() {
 
 	while (isThreadRunning()) {
 		m_timer.waitNext();
-		// Do your thing here. It will run once per second.
+
+		// will run each beat
 		if (!m_enabled) {
 			continue;
 		}
 
-		if (++metronomSoundSwitch < 1) {
+		++metronomSoundSwitch;
+
+		if (metronomSoundSwitch < 1) {
 			m_upbeatPlayer.play();
 		}
 		else if (metronomSoundSwitch < 4) {
