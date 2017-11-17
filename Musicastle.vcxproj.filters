@@ -31,6 +31,9 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Metronom.cpp">
+      <Filter>src\Metronom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -44,6 +47,9 @@
     </Filter>
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{02634dde-861c-4a35-a29e-e4ed1c0ad01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Metronom">
+      <UniqueIdentifier>{14707c63-8dd1-49cb-bc66-3de9ec5e905f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Metronom.h">
+      <Filter>src\Metronom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

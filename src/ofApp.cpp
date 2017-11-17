@@ -19,11 +19,15 @@ void ofApp::setup() {
 
 	m_btnAddSample.addListener(this, &ofApp::addSampleBtnPressed);
 	m_btnRemoveSample.addListener(this, &ofApp::removeSampleBtnPressed);
+	m_metronomEnabled.addListener(this, &ofApp::updateMetronomEnabled);
+	m_metronomBpm.addListener(this, &ofApp::updateMetronomBpm);
 
 	m_gui.setup("Musicastle");
 	m_gui.add(m_sampleId.set("Selected Sample", 0, 0, m_vecSoundPlayer.size() - 1));
 	m_gui.add(m_btnAddSample.setup("Add Sample"));
 	m_gui.add(m_btnRemoveSample.setup("Remove Sample"));
+	m_gui.add(m_metronomEnabled.set("Metronom", m_metronom.getEnabled()));
+	m_gui.add(m_metronomBpm.set("Metronom Bpm", m_metronom.getBpm(), 1, 500));
 }
 
 //--------------------------------------------------------------
@@ -37,9 +41,6 @@ void ofApp::update() {
 
 	// update the sound playing system:
 	ofSoundUpdate();
-
-	// update the sample id range
-	m_sampleId.setMax(m_vecSoundPlayer.size() - 1);
 }
 
 //--------------------------------------------------------------
@@ -129,6 +130,9 @@ void ofApp::addSampleBtnPressed() {
 		player.setVolume(0.75f);
 		player.setMultiPlay(true);
 		m_vecSoundPlayer.push_back(player);
+
+		// update the sample id range
+		m_sampleId.setMax(m_vecSoundPlayer.size() - 1);
 	}
 }
 
@@ -136,6 +140,21 @@ void ofApp::addSampleBtnPressed() {
 void ofApp::removeSampleBtnPressed() {
 	if (!m_vecSoundPlayer.empty()) {
 		m_vecSoundPlayer.erase(m_vecSoundPlayer.begin() + m_sampleId.get());
+
+		// update the sample id range
+		m_sampleId.setMax(m_vecSoundPlayer.size() - 1);
 		m_sampleId.set(0);
 	}
+}
+
+//--------------------------------------------------------------
+void ofApp::updateMetronomEnabled(bool& enabled)
+{
+	m_metronom.setEnabled(enabled);
+}
+
+//--------------------------------------------------------------
+void ofApp::updateMetronomBpm(int & bpm)
+{
+	m_metronom.setBpm(bpm);
 }
