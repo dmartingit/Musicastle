@@ -31,11 +31,17 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoopManager\LoopManager.cpp">
-      <Filter>src\LoopManager</Filter>
-    </ClCompile>
     <ClCompile Include="src\Metronome\Metronome.cpp">
       <Filter>src\Metronome</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InstrumentManager\InstrumentManager.cpp">
+      <Filter>src\InstrumentManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Instrument\Instrument.cpp">
+      <Filter>src\Instrument</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventManager\EventManager.cpp">
+      <Filter>src\EventManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,11 +57,17 @@
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{02634dde-861c-4a35-a29e-e4ed1c0ad01e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\LoopManager">
-      <UniqueIdentifier>{7a06e742-e54d-4c45-8f47-d57cb9fdb865}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Metronome">
       <UniqueIdentifier>{cba05a51-9783-49f0-a7f0-4a904ef80094}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\InstrumentManager">
+      <UniqueIdentifier>{b8f431fa-f5da-4dbe-aaa7-14fd412c7831}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Instrument">
+      <UniqueIdentifier>{62b97509-c4a4-410a-a00c-5fa5d81de63d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EventManager">
+      <UniqueIdentifier>{649450f9-f89e-40b2-916b-bdd7229a4d71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,11 +101,17 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\LoopManager\LoopManager.h">
-      <Filter>src\LoopManager</Filter>
-    </ClInclude>
     <ClInclude Include="src\Metronome\Metronome.h">
       <Filter>src\Metronome</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InstrumentManager\InstrumentManager.h">
+      <Filter>src\InstrumentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Instrument\Instrument.h">
+      <Filter>src\Instrument</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventManager\EventManager.h">
+      <Filter>src\EventManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
