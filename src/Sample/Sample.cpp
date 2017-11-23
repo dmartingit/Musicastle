@@ -19,7 +19,6 @@ void CSample::loop(int beat)
 	}
 }
 
-// FIXME(dmartin): m_loopTimes elements does not get increased
 //--------------------------------------------------------------
 void CSample::addTime(int beat)
 {
