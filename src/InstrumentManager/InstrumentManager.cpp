@@ -1,10 +1,10 @@
 #include "InstrumentManager.h"
 
 //--------------------------------------------------------------
-void CInstrumentManager::loop(int time)
+void CInstrumentManager::loop()
 {
-	for (auto instrument : m_instruments) {
-		instrument.loop(time);
+	for (auto& instrument : m_instruments) {
+		instrument.loop();
 	}
 }
 

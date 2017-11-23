@@ -45,6 +45,7 @@ void CEventManager::threadedFunction() {
 		}
 
 		m_metronome->loop();
+		m_instrumentManager->loop();
 	};
 }
 

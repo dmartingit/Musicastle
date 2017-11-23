@@ -2,19 +2,31 @@
 
 //--------------------------------------------------------------
 CInstrument::CInstrument(std::string name) 
-	: m_name(name)
+	: m_name(name), m_beat(-1), m_maxBeat(-1), m_record(false)
 {
 }
 
 //--------------------------------------------------------------
-void CInstrument::loop(int time)
+void CInstrument::loop()
 {
-	for (auto i = 0; i < m_sampleLoopTimes.size(); ++i) {
-		for (auto loopTime : m_sampleLoopTimes.at(i)) {
-			if (loopTime == time) {
-				m_samplePlayer.at(i).play();
-			}
+	if (m_record) {
+		++m_beat;
+	}
+	else {
+		if (m_beat < m_maxBeat) {
+			++m_beat;
 		}
+		else {
+			m_beat = 0;
+		}
+	}
+
+	if (m_maxBeat == -1) {
+		return;
+	}
+
+	for (auto& sample : m_samples) {
+		sample.loop(m_beat);
 	}
 }
 
@@ -22,44 +34,55 @@ void CInstrument::loop(int time)
 void CInstrument::play(int idx)
 {
 	if (this->isIndexInBounds(idx)) {
-		m_samplePlayer.at(idx).play();
+		if (m_record) {
+			this->addTime(idx);
+		}
+
+		m_samples.at(idx).m_player.play();
 	}
 }
 
 //--------------------------------------------------------------
 void CInstrument::addSample(std::string path, float volume, bool multiplay)
 {
-	ofSoundPlayer player;
-	player.load(path);
-	player.setVolume(volume);
-	player.setMultiPlay(multiplay);
-
-	m_samplePlayer.push_back(player);
-	m_sampleLoopTimes.push_back(std::vector<int>());
+	m_samples.push_back(CSample(path, volume, multiplay));
 }
 
 //--------------------------------------------------------------
 void CInstrument::removeSample(int idx)
 {
 	if (this->isIndexInBounds(idx)) {
-		m_samplePlayer.erase(m_samplePlayer.begin() + idx);
-		m_sampleLoopTimes.erase(m_sampleLoopTimes.begin() + idx);
+		m_samples.erase(m_samples.begin() + idx);
 	}
 }
 
 //--------------------------------------------------------------
-void CInstrument::addTime(int sample, int time)
+void CInstrument::addTime(int sample)
 {
 	if (this->isIndexInBounds(sample)) {
-		m_sampleLoopTimes.at(sample).push_back(time);
+		m_samples.at(sample).addTime(m_beat);
 	}
 }
 
 //--------------------------------------------------------------
 void CInstrument::clearTimes()
 {
-	for (auto sample : m_sampleLoopTimes) {
-		sample.clear();
+	for (auto& sample : m_samples) {
+		sample.clearTimes();
+	}
+}
+
+//--------------------------------------------------------------
+void CInstrument::setRecord(bool record)
+{
+	m_record = record;
+
+	if (record) {
+		m_beat = -1;
+		m_maxBeat = -1;
+	}
+	else {
+		m_maxBeat = m_beat;
 	}
 }
 
@@ -67,6 +90,12 @@ void CInstrument::clearTimes()
 void CInstrument::setName(std::string name)
 {
 	m_name = name;
+}
+
+//--------------------------------------------------------------
+bool CInstrument::getRecord()
+{
+	return m_record;
 }
 
 //--------------------------------------------------------------
@@ -78,7 +107,7 @@ std::string CInstrument::getName()
 //--------------------------------------------------------------
 bool CInstrument::isIndexInBounds(int idx)
 {
-	if ((idx < 0) || (m_samplePlayer.size() < idx + 1) || (m_sampleLoopTimes.size() < idx + 1)) {
+	if ((idx < 0) || (m_samples.size() < idx + 1)) {
 		return false;
 	}
 

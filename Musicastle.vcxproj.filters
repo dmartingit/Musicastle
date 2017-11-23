@@ -43,6 +43,9 @@
     <ClCompile Include="src\EventManager\EventManager.cpp">
       <Filter>src\EventManager</Filter>
     </ClCompile>
+    <ClCompile Include="src\Sample\Sample.cpp">
+      <Filter>src\Sample</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -68,6 +71,9 @@
     </Filter>
     <Filter Include="src\EventManager">
       <UniqueIdentifier>{649450f9-f89e-40b2-916b-bdd7229a4d71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Sample">
+      <UniqueIdentifier>{73936c5b-dbb0-43d7-aa8c-40c56aff31a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="src\EventManager\EventManager.h">
       <Filter>src\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sample\Sample.h">
+      <Filter>src\Sample</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

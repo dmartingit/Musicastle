@@ -8,7 +8,7 @@ public:
 	CInstrumentManager() = default;
 	~CInstrumentManager() = default;
 
-	void loop(int time);
+	void loop();
 	void addInstrument(std::string name);
 	void removeInstrument(int idx);
 	
