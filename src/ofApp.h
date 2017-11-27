@@ -41,6 +41,7 @@ private:
 	ofParameter<int> m_bpm;
 	ofParameter<bool> m_record;
 	ofxButton m_btnClearLoop;
+	ofParameter<bool> m_changeSampleShortcut;
 	std::shared_ptr<CMetronome> m_metronome;
 	std::shared_ptr<CInstrumentManager> m_instrumentManager;
 	CEventManager m_eventManager;

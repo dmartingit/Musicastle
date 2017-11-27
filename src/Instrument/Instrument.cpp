@@ -46,9 +46,9 @@ void CInstrument::play(int idx)
 }
 
 //--------------------------------------------------------------
-void CInstrument::addSample(std::string path, float volume, bool multiplay)
+void CInstrument::addSample(std::string path, int shortcut, float volume, bool multiplay)
 {
-	m_samples.push_back(CSample(path, volume, multiplay));
+	m_samples.push_back(CSample(path, shortcut, volume, multiplay));
 }
 
 //--------------------------------------------------------------

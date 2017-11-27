@@ -20,7 +20,6 @@ void ofApp::setup() {
 	m_record.addListener(this, &ofApp::recordBtnPressed);
 	m_btnClearLoop.addListener(this, &ofApp::clearLoopBtnPressed);
 
-
 	// initialize menu
 	m_gui.setup("Musicastle");
 	m_gui.add(m_btnAddInstrument.setup("Add Instrument"));
@@ -33,6 +32,7 @@ void ofApp::setup() {
 	m_gui.add(m_bpm.set("Bpm", m_eventManager.getBpm(), 1, 500));
 	m_gui.add(m_record.set("Record", m_instrumentManager->getInstrument(0).getRecord()));
 	m_gui.add(m_btnClearLoop.setup("Clear Loop"));
+	m_gui.add(m_changeSampleShortcut.set("Change Sample Shortcut", false));
 }
 
 //--------------------------------------------------------------
@@ -76,7 +76,8 @@ void ofApp::draw() {
 		ofDrawBitmapString("Sample", (widthDiv * i) + 50, 50);
 
 		ofSetHexColor(0x000000);
-		tmpStr = "click to play (Left Arrow)";
+		tmpStr = "click to play (Left Arrow)\nShortcut: ";
+		tmpStr.append(std::to_string(sample.getShortcut()));
 		ofDrawBitmapString(tmpStr, (widthDiv * i) + 20, ofGetHeight() - 50);
 	}
 
@@ -86,21 +87,19 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-	auto& instrument = m_instrumentManager->getInstrument(m_instrumentIdx.get());
-	switch (key)
-	{
-	case OF_KEY_UP:
-		instrument.play(0);
-		break;
-	case OF_KEY_LEFT:
-		instrument.play(1);
-		break;
-	case OF_KEY_DOWN:
-		instrument.play(2);
-		break;
-	case OF_KEY_RIGHT:
-		instrument.play(3);
-		break;
+	if (m_changeSampleShortcut.get()) {
+		m_instrumentManager->getInstrument(m_instrumentIdx.get()).m_samples.at(m_sampleIdx.get()).setShortcut(key);
+		m_changeSampleShortcut.set(false);
+		return;
+	}
+
+	for (auto i = 0; i < m_instrumentManager->getInstrumentSize(); ++i) {
+		auto& instrument = m_instrumentManager->getInstrument(i);
+		for (auto i = 0; i < instrument.m_samples.size(); ++i) {
+			if (key == instrument.m_samples.at(i).getShortcut()) {
+				instrument.play(i);
+			}
+		}
 	}
 }
 
@@ -187,16 +186,16 @@ void ofApp::clearLoopBtnPressed()
 //--------------------------------------------------------------
 void ofApp::initInstruments()
 {
-	std::vector<std::string> m_samples = {
-		"../../data/samples/piano/c.wav",
-		"../../data/samples/piano/d.wav",
-		"../../data/samples/piano/e.wav",
-		"../../data/samples/piano/f.wav"
+	std::map<std::string, int> m_samples = {
+		{"../../data/samples/piano/c.wav", OF_KEY_UP },
+		{ "../../data/samples/piano/d.wav", OF_KEY_LEFT },
+		{ "../../data/samples/piano/e.wav", OF_KEY_DOWN },
+		{ "../../data/samples/piano/f.wav", OF_KEY_RIGHT }
 	};
 
 	m_instrumentManager->addInstrument("Piano");
 
 	for (const auto sample : m_samples) {
-		m_instrumentManager->getInstrument("Piano").addSample(sample);
+		m_instrumentManager->getInstrument("Piano").addSample(sample.first, sample.second);
 	}
 }

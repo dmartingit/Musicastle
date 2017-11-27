@@ -12,7 +12,7 @@ public:
 
 	void loop();
 	void play(int idx);
-	void addSample(std::string path, float volume = 0.75f, bool multiplay = true);
+	void addSample(std::string path, int shortcut = -1, float volume = 0.75f, bool multiplay = true);
 	void removeSample(int idx);
 	void addTime(int sample);
 	void clearTimes();
