@@ -3,6 +3,8 @@
 
 #include "..\Sample\Sample.h"
 
+#include <chrono>
+
 class CInstrument {
 public:
 	CInstrument(std::string name);
@@ -29,6 +31,7 @@ public:
 
 private:
 	std::string m_name;
-	int m_beat, m_maxBeat;
+	int m_beat, m_maxBeat, m_lastTimeBetweenBeats;
 	bool m_record;
+	std::chrono::time_point<std::chrono::steady_clock> m_lastBeatTime;
 };

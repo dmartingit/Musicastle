@@ -11,6 +11,9 @@ void CInstrument::loop()
 {
 	if (m_record) {
 		++m_beat;
+		auto now = std::chrono::high_resolution_clock::now();
+		m_lastTimeBetweenBeats = std::chrono::duration_cast<std::chrono::milliseconds>(now - m_lastBeatTime).count() / 2;
+		m_lastBeatTime = now;
 	}
 	else {
 		if (m_beat < m_maxBeat) {
@@ -60,7 +63,12 @@ void CInstrument::removeSample(int idx)
 void CInstrument::addTime(int sample)
 {
 	if (this->isIndexInBounds(sample)) {
-		m_samples.at(sample).addTime(m_beat);
+		auto now = std::chrono::high_resolution_clock::now();
+		auto beat = m_beat;
+		if (std::chrono::duration_cast<std::chrono::milliseconds>(now - m_lastBeatTime).count() > m_lastTimeBetweenBeats) {
+			++beat;
+		}
+		m_samples.at(sample).addTime(beat);
 	}
 }
 
