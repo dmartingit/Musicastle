@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 CMetronome::CMetronome() 
-	: m_enabled(false)
+	: m_enabled(false), m_beat(4)
 {
 	// setup sound players
 	m_upbeatPlayer.load("../../data/samples/metronom/metronome_upbeat.wav");
@@ -22,10 +22,10 @@ void CMetronome::loop()
 
 	++metronomSoundSwitch;
 
-	if (metronomSoundSwitch < 1) {
+	if (metronomSoundSwitch == 0) {
 		m_upbeatPlayer.play();
 	}
-	else if (metronomSoundSwitch < 4) {
+	else if (metronomSoundSwitch < m_beat) {
 		m_downbeatPlayer.play();
 	}
 	else {
@@ -41,7 +41,19 @@ void CMetronome::setEnabled(bool enabled)
 }
 
 //--------------------------------------------------------------
+void CMetronome::setBeat(int beat)
+{
+	m_beat = beat;
+}
+
+//--------------------------------------------------------------
 bool CMetronome::getEnabled()
 {
 	return m_enabled;
+}
+
+//--------------------------------------------------------------
+int CMetronome::getBeat()
+{
+	return m_beat;
 }

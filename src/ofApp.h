@@ -23,6 +23,7 @@ private:
 	void removeSampleBtnPressed();
 	void updateMetronomeEnabled(bool& enabled);
 	void updateBpm(int& bpm);
+	void updateBeat(int& beat);
 	void updateMenuTitle(int& idx);
 	void recordBtnPressed(bool& record);
 	void clearLoopBtnPressed();
@@ -38,6 +39,7 @@ private:
 	ofxButton m_btnRemoveSample;
 	ofParameter<int> m_sampleIdx;
 	ofParameter<bool> m_metronomeEnabled;
+	ofParameter<int> m_beat;
 	ofParameter<int> m_bpm;
 	ofParameter<bool> m_record;
 	ofxButton m_btnClearLoop;

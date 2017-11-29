@@ -16,6 +16,7 @@ void ofApp::setup() {
 	m_btnAddSample.addListener(this, &ofApp::addSampleBtnPressed);
 	m_btnRemoveSample.addListener(this, &ofApp::removeSampleBtnPressed);
 	m_metronomeEnabled.addListener(this, &ofApp::updateMetronomeEnabled);
+	m_beat.addListener(this, &ofApp::updateBeat);
 	m_bpm.addListener(this, &ofApp::updateBpm);
 	m_record.addListener(this, &ofApp::recordBtnPressed);
 	m_btnClearLoop.addListener(this, &ofApp::clearLoopBtnPressed);
@@ -29,6 +30,7 @@ void ofApp::setup() {
 	m_gui.add(m_btnRemoveSample.setup("Remove Sample"));
 	m_gui.add(m_sampleIdx.set("Selected Sample", 0, 0, m_instrumentManager->getInstrument(0).m_samples.size() - 1));
 	m_gui.add(m_metronomeEnabled.set("Metronom", m_metronome->getEnabled()));
+	m_gui.add(m_beat.set("Beat", m_metronome->getBeat(), 1, 8));
 	m_gui.add(m_bpm.set("Bpm", m_eventManager.getBpm(), 1, 500));
 	m_gui.add(m_record.set("Record", m_instrumentManager->getInstrument(0).getRecord()));
 	m_gui.add(m_btnClearLoop.setup("Clear Loop"));
@@ -163,6 +165,12 @@ void ofApp::updateMetronomeEnabled(bool& enabled)
 void ofApp::updateBpm(int& bpm)
 {
 	m_eventManager.setBpm(bpm);
+}
+
+//--------------------------------------------------------------
+void ofApp::updateBeat(int& beat)
+{
+	m_metronome->setBeat(beat);
 }
 
 //--------------------------------------------------------------
