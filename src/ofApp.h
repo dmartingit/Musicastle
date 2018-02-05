@@ -2,9 +2,11 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 
-#include "Metronome\Metronome.h"
-#include "InstrumentManager\InstrumentManager.h"
+#include "ArduinoManager\ArduinoManager.h"
 #include "EventManager\EventManager.h"
+#include "InstrumentManager\InstrumentManager.h"
+#include "Metronome\Metronome.h"
+#include "TCPManager\TCPManager.h"
 
 class ofApp : public ofBaseApp {
 public:
@@ -14,7 +16,9 @@ public:
 	void draw();
 
 	void keyPressed(int key);
+	void keyReleased(int key);
 	void mousePressed(int x, int y, int button);
+	void mouseReleased(int x, int y, int button);
 
 private:
 	void addInstrumentBtnPressed();
@@ -27,6 +31,7 @@ private:
 	void updateMenuTitle(int& idx);
 	void recordBtnPressed(bool& record);
 	void clearLoopBtnPressed();
+	void updateArduinoAnalogInput();
 
 	void initInstruments();
 
@@ -47,5 +52,6 @@ private:
 	std::shared_ptr<CMetronome> m_metronome;
 	std::shared_ptr<CInstrumentManager> m_instrumentManager;
 	CEventManager m_eventManager;
+	CArduinoManager m_arduinoManager;
 };
 

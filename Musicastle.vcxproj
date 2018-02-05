@@ -172,6 +172,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ArduinoManager\ArduinoManager.cpp" />
     <ClCompile Include="src\EventManager\EventManager.cpp" />
     <ClCompile Include="src\InstrumentManager\InstrumentManager.cpp" />
     <ClCompile Include="src\Instrument\Instrument.cpp" />
@@ -187,8 +188,10 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxPanel.cpp" />
     <ClCompile Include="src\Sample\Sample.cpp" />
+    <ClCompile Include="src\TCPManager\TCPManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ArduinoManager\ArduinoManager.h" />
     <ClInclude Include="src\EventManager\EventManager.h" />
     <ClInclude Include="src\InstrumentManager\InstrumentManager.h" />
     <ClInclude Include="src\Instrument\Instrument.h" />
@@ -204,6 +207,7 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxButton.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxLabel.h" />
     <ClInclude Include="src\Sample\Sample.h" />
+    <ClInclude Include="src\TCPManager\TCPManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

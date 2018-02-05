@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ofApp">
+    <Position X="0.5" Y="2.75" Width="2" />
+    <Members>
+      <Method Name="addInstrumentBtnPressed" Hidden="true" />
+      <Method Name="addSampleBtnPressed" Hidden="true" />
+      <Method Name="clearLoopBtnPressed" Hidden="true" />
+      <Method Name="draw" Hidden="true" />
+      <Method Name="exit" Hidden="true" />
+      <Method Name="initInstruments" Hidden="true" />
+      <Method Name="keyPressed" Hidden="true" />
+      <Field Name="m_beat" Hidden="true" />
+      <Field Name="m_bpm" Hidden="true" />
+      <Field Name="m_btnAddInstrument" Hidden="true" />
+      <Field Name="m_btnAddSample" Hidden="true" />
+      <Field Name="m_btnClearLoop" Hidden="true" />
+      <Field Name="m_btnRemoveInstrument" Hidden="true" />
+      <Field Name="m_btnRemoveSample" Hidden="true" />
+      <Field Name="m_changeSampleShortcut" Hidden="true" />
+      <Field Name="m_gui" Hidden="true" />
+      <Field Name="m_instrumentIdx" Hidden="true" />
+      <Field Name="m_metronomeEnabled" Hidden="true" />
+      <Field Name="m_record" Hidden="true" />
+      <Field Name="m_sampleIdx" Hidden="true" />
+      <Method Name="mousePressed" Hidden="true" />
+      <Method Name="recordBtnPressed" Hidden="true" />
+      <Method Name="removeInstrumentBtnPressed" Hidden="true" />
+      <Method Name="removeSampleBtnPressed" Hidden="true" />
+      <Method Name="setup" Hidden="true" />
+      <Method Name="update" Hidden="true" />
+      <Method Name="updateBeat" Hidden="true" />
+      <Method Name="updateBpm" Hidden="true" />
+      <Method Name="updateMenuTitle" Hidden="true" />
+      <Method Name="updateMetronomeEnabled" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QgEAAAAAABBBAAgAAEIIECABlAQgIAECAEAMACAEIJA=</HashCode>
+      <FileName>src\ofApp.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSample">
+    <Position X="7.75" Y="4.5" Width="1.75" />
+    <Members>
+      <Method Name="~CSample" Hidden="true" />
+      <Method Name="addTime" Hidden="true" />
+      <Method Name="clearTimes" Hidden="true" />
+      <Method Name="CSample" Hidden="true" />
+      <Method Name="getShortcut" Hidden="true" />
+      <Field Name="m_player" Hidden="true" />
+      <Method Name="setShortcut" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAQSAAAAAAEAAAAEAAAAGAAAAAAgAgAAAA=</HashCode>
+      <FileName>src\Sample\Sample.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMetronome">
+    <Position X="5.5" Y="2.75" Width="1.75" />
+    <Members>
+      <Method Name="~CMetronome" Hidden="true" />
+      <Method Name="CMetronome" Hidden="true" />
+      <Method Name="getBeat" Hidden="true" />
+      <Method Name="getEnabled" Hidden="true" />
+      <Field Name="m_downbeatPlayer" Hidden="true" />
+      <Field Name="m_upbeatPlayer" Hidden="true" />
+      <Method Name="setBeat" Hidden="true" />
+      <Method Name="setEnabled" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAIAKAACAAAgAIAAEAABAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>src\Metronome\Metronome.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CInstrumentManager">
+    <Position X="7.75" Y="0.75" Width="1.75" />
+    <Members>
+      <Method Name="~CInstrumentManager" Hidden="true" />
+      <Method Name="CInstrumentManager" Hidden="true" />
+      <Method Name="getInstrument" Hidden="true" />
+      <Method Name="getInstrumentSize" Hidden="true" />
+      <Method Name="isIndexInBounds" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAACAAEAAEAAAAAAACYAAAAAAAAAgAAAAQ=</HashCode>
+      <FileName>src\InstrumentManager\InstrumentManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CInstrument">
+    <Position X="7.75" Y="2.75" Width="1.75" />
+    <Members>
+      <Method Name="~CInstrument" Hidden="true" />
+      <Method Name="addSample" Hidden="true" />
+      <Method Name="addTime" Hidden="true" />
+      <Method Name="CInstrument" Hidden="true" />
+      <Method Name="clearTimes" Hidden="true" />
+      <Method Name="getName" Hidden="true" />
+      <Method Name="getRecord" Hidden="true" />
+      <Method Name="isIndexInBounds" Hidden="true" />
+      <Field Name="m_beat" Hidden="true" />
+      <Field Name="m_lastBeatTime" Hidden="true" />
+      <Field Name="m_lastTimeBetweenBeats" Hidden="true" />
+      <Field Name="m_maxBeat" Hidden="true" />
+      <Field Name="m_name" Hidden="true" />
+      <Field Name="m_record" Hidden="true" />
+      <Method Name="removeSample" Hidden="true" />
+      <Method Name="setName" Hidden="true" />
+      <Method Name="setRecord" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EEAAAAQAAEgAKAAgAAEAAAAAEICAACFAAAAEAAgAAIQ=</HashCode>
+      <FileName>src\Instrument\Instrument.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CEventManager">
+    <Position X="3" Y="2.5" Width="2" />
+    <Members>
+      <Method Name="CEventManager" Hidden="true" />
+      <Method Name="getBpm" Hidden="true" />
+      <Method Name="getBpmToNano" Hidden="true" />
+      <Field Name="m_bpm" Hidden="true" />
+      <Method Name="setBpm" Hidden="true" />
+      <Method Name="setInstrumentManager" Hidden="true" />
+      <Method Name="setMetronome" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAgAAQAAAAEAAAAAAAQAgAAAEAAAAMAAAAIAQ=</HashCode>
+      <FileName>src\EventManager\EventManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

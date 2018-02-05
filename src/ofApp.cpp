@@ -1,7 +1,11 @@
 #include "ofApp.h"
 
+#include <chrono>
+
 //--------------------------------------------------------------
 void ofApp::setup() {
+	// initialize members
+	m_arduinoManager.connect();
 	m_instrumentManager = std::make_shared<CInstrumentManager>();
 	m_metronome = std::make_shared<CMetronome>();
 	m_eventManager.setInstrumentManager(m_instrumentManager);
@@ -46,6 +50,10 @@ void ofApp::exit() {
 void ofApp::update() {
 	ofBackground(255, 255, 255);
 
+	// update arduino
+	this->m_arduinoManager.loop();
+	this->updateArduinoAnalogInput();
+
 	// update the sound playing system
 	ofSoundUpdate();
 }
@@ -78,7 +86,7 @@ void ofApp::draw() {
 		ofDrawBitmapString("Sample", (widthDiv * i) + 50, 50);
 
 		ofSetHexColor(0x000000);
-		tmpStr = "click to play (Left Arrow)\nShortcut: ";
+		tmpStr = "click to play\nShortcut: ";
 		tmpStr.append(std::to_string(sample.getShortcut()));
 		ofDrawBitmapString(tmpStr, (widthDiv * i) + 20, ofGetHeight() - 50);
 	}
@@ -100,9 +108,16 @@ void ofApp::keyPressed(int key) {
 		for (auto i = 0; i < instrument.m_samples.size(); ++i) {
 			if (key == instrument.m_samples.at(i).getShortcut()) {
 				instrument.play(i);
+				this->m_arduinoManager.setLED(true);
 			}
 		}
 	}
+}
+
+//--------------------------------------------------------------
+void ofApp::keyReleased(int key)
+{
+	this->m_arduinoManager.setLED(false);
 }
 
 //--------------------------------------------------------------
@@ -117,8 +132,15 @@ void ofApp::mousePressed(int x, int y, int button) {
 	for (auto i = 0; i < samples.size(); ++i) {
 		if (x >= (widthStep * i) && x < (widthStep * (i + 1))) {
 			instrument.play(i);
+			this->m_arduinoManager.setLED(true);
 		}
 	}
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseReleased(int x, int y, int button)
+{
+	this->m_arduinoManager.setLED(false);
 }
 
 //--------------------------------------------------------------
@@ -189,6 +211,22 @@ void ofApp::recordBtnPressed(bool& record)
 void ofApp::clearLoopBtnPressed()
 {
 	m_instrumentManager->getInstrument(m_instrumentIdx.get()).clearTimes();
+}
+
+//--------------------------------------------------------------
+void ofApp::updateArduinoAnalogInput()
+{
+	// play arduino sample
+	auto now = std::chrono::high_resolution_clock::now();
+	static auto difTime = now;
+	if (this->m_arduinoManager.getAnalog() > 1000 && std::chrono::duration_cast<std::chrono::milliseconds>(now - difTime).count() > 150) {
+		difTime = now;
+		auto instrument = m_instrumentManager->getInstrument(m_instrumentIdx);
+
+		if (instrument.m_samples.size() > 0) {
+			instrument.play(0);
+		}
+	}
 }
 
 //--------------------------------------------------------------

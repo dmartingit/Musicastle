@@ -46,6 +46,12 @@
     <ClCompile Include="src\Sample\Sample.cpp">
       <Filter>src\Sample</Filter>
     </ClCompile>
+    <ClCompile Include="src\TCPManager\TCPManager.cpp">
+      <Filter>src\TCPManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ArduinoManager\ArduinoManager.cpp">
+      <Filter>src\ArduinoManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -74,6 +80,12 @@
     </Filter>
     <Filter Include="src\Sample">
       <UniqueIdentifier>{73936c5b-dbb0-43d7-aa8c-40c56aff31a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TCPManager">
+      <UniqueIdentifier>{c1805874-91f1-4f77-8495-b6de65d50441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ArduinoManager">
+      <UniqueIdentifier>{28f9b43c-b9e7-4aa1-8988-e2cae53d1100}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +133,12 @@
     </ClInclude>
     <ClInclude Include="src\Sample\Sample.h">
       <Filter>src\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TCPManager\TCPManager.h">
+      <Filter>src\TCPManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ArduinoManager\ArduinoManager.h">
+      <Filter>src\ArduinoManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
