@@ -238,7 +238,7 @@ void ofApp::updateArduinoAnalogInput()
 		auto instrument = m_instrumentManager->getInstrument(m_instrumentIdx);
 
 		if (instrument.m_samples.size() > 0) {
-			instrument.play(0);
+			instrument.play(m_sampleIdx);
 		}
 	}
 }
