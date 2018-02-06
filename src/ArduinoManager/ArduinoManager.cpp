@@ -62,6 +62,16 @@ int CArduinoManager::getAnalog(int pin)
 }
 
 //--------------------------------------------------------------
+int CArduinoManager::getDigital(int pin)
+{
+	if (!this->m_setupFinished) {
+		return 0;
+	}
+
+	return this->m_arduino.getDigital(pin);
+}
+
+//--------------------------------------------------------------
 void CArduinoManager::setup(const int & version)
 {
 	// remove setup listener
@@ -71,7 +81,8 @@ void CArduinoManager::setup(const int & version)
 	this->m_arduino.sendDigitalPinMode(13, ARD_OUTPUT);
 
 	// add touch sensor
-	this->m_arduino.sendAnalogPinReporting(0, ARD_ANALOG);
+	this->m_arduino.sendAnalogPinReporting(14, ARD_ANALOG);
+	this->m_arduino.sendAnalogPinReporting(15, ARD_ANALOG);
 
 	// enable all features like analog reading etc.
 	this->m_setupFinished = true;

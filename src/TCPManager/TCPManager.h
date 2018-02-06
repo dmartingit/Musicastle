@@ -8,6 +8,6 @@ public:
 	CTCPManager() = default;
 	~CTCPManager() = default;
 
-private:
+public:
 	ofxTCPServer m_tcpServer;
 };

@@ -105,9 +105,9 @@ void ofApp::keyPressed(int key) {
 
 	for (auto i = 0; i < m_instrumentManager->getInstrumentSize(); ++i) {
 		auto& instrument = m_instrumentManager->getInstrument(i);
-		for (auto i = 0; i < instrument.m_samples.size(); ++i) {
-			if (key == instrument.m_samples.at(i).getShortcut()) {
-				instrument.play(i);
+		for (auto j = 0; j < instrument.m_samples.size(); ++j) {
+			if (key == instrument.m_samples.at(j).getShortcut()) {
+				instrument.play(j);
 				this->m_arduinoManager.setLED(true);
 			}
 		}
@@ -216,10 +216,24 @@ void ofApp::clearLoopBtnPressed()
 //--------------------------------------------------------------
 void ofApp::updateArduinoAnalogInput()
 {
+	// control volume
+	static int lastVolume = this->m_arduinoManager.getAnalog(15);
+	auto volume = this->m_arduinoManager.getAnalog(15);
+	if (lastVolume != volume) {
+		auto mappedVolume = ofMap(volume, 0, 1023, 0, 1);
+		for (auto i = 0; i < m_instrumentManager->getInstrumentSize(); ++i) {
+			auto& instrument = m_instrumentManager->getInstrument(i);
+			for (auto j = 0; j < instrument.m_samples.size(); ++j) {
+				instrument.m_samples[j].m_player.setVolume(mappedVolume);
+			}
+		}
+		lastVolume = volume;
+	}
+
 	// play arduino sample
 	auto now = std::chrono::high_resolution_clock::now();
 	static auto difTime = now;
-	if (this->m_arduinoManager.getAnalog() > 1000 && std::chrono::duration_cast<std::chrono::milliseconds>(now - difTime).count() > 150) {
+	if (this->m_arduinoManager.getAnalog(14) == 1023 && std::chrono::duration_cast<std::chrono::milliseconds>(now - difTime).count() > 150) {
 		difTime = now;
 		auto instrument = m_instrumentManager->getInstrument(m_instrumentIdx);
 

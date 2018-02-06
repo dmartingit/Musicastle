@@ -15,6 +15,7 @@ public:
 	void setLED(bool enabled, int pin = 13);
 
 	int getAnalog(int pin = 0);
+	int getDigital(int pin = 0);
 
 private:
 	void setup(const int& version);
