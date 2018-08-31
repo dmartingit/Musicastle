@@ -10,4 +10,4 @@ Usage:
  * Profit!
  
  Showcase:
- [![Musicastle Showcase](http://img.youtube.com/vi/Bz-r_qkvNQA/0.jpg)](http://www.youtube.com/watch?v=Bz-r_qkvNQA)
+ [![Showcase](http://img.youtube.com/vi/Bz-r_qkvNQA/0.jpg)](http://www.youtube.com/watch?v=Bz-r_qkvNQA)
